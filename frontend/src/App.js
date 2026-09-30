@@ -7,6 +7,7 @@ import Header from "./components/layout/Header";
 import Footer, { InstagramStrip } from "./components/layout/Footer";
 import CartDrawer from "./components/layout/CartDrawer";
 import ScrollTop from "./components/layout/ScrollTop";
+import IntroLoader from "./components/brand/IntroLoader";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
@@ -37,6 +38,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <CartProvider>
+          <IntroLoader />
           <ScrollToTopOnRoute />
           <Header />
           <Routes>

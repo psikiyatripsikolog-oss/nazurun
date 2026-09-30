@@ -76,7 +76,7 @@ export default function Footer() {
     <footer className="bg-rg-dark text-rg-alttext" data-testid="site-footer">
       <div className="rg-container pt-[110px] pb-[70px] max-md:pt-[70px] max-md:pb-[50px] grid grid-cols-12 gap-y-12 gap-x-8">
         <div className="col-span-12 lg:col-span-4">
-          <Link to="/" aria-label="CABELO₃ ana sayfa"><Logo className="h-[62px]" /></Link>
+          <Link to="/" aria-label="CABELO₃ ana sayfa" className="inline-block"><Logo variant="stacked" className="h-[150px] max-md:h-[130px]" /></Link>
           <p className="mt-7 max-w-[400px] text-[16px] leading-[1.7]">
             Aşırı yağlanma ve sebum düzensizliği eğilimli saç derisi için sade, ferah ve rutin odaklı bakım ürünleri.
           </p>

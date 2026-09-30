@@ -215,3 +215,47 @@ textarea.rg-input { border-radius: 24px; min-height: 150px; resize: vertical; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .marquee-track, .spin-slow { animation: none; }
 }
+
+/* ---------- Brand logo ---------- */
+.brand-logo { display: block; height: 100%; width: auto; overflow: visible; }
+.brand-logo .lg-shine { transform: translateX(0); }
+.logo-shine .lg-shine { animation: lgShine 2.2s var(--ease) 0.6s 1 both; }
+a:hover .logo-shine .lg-shine, .logo-shine:hover .lg-shine { animation: lgShine 1.3s var(--ease) 0s 1 both; }
+@keyframes lgShine { from { transform: translateX(0); } to { transform: translateX(var(--lg-travel, 600px)); } }
+
+.brand-logo .lg-drop, .brand-logo .lg-atom { transform-box: fill-box; transform-origin: center; }
+a:hover .brand-logo .lg-drop { animation: lgDropBob 1.2s var(--ease) 1; }
+@keyframes lgDropBob { 0%,100% { transform: translateY(0) scale(1); } 40% { transform: translateY(-2.5px) scale(1.06); } }
+
+/* intro draw animation */
+.logo-intro .lg-ring { stroke-dasharray: 1; stroke-dashoffset: 1; animation: lgDraw 1.3s var(--ease) .1s forwards; }
+.logo-intro .lg-arc { stroke-dasharray: 1; stroke-dashoffset: 1; animation: lgDraw 1.1s var(--ease) .35s forwards; }
+.logo-intro .lg-dots { opacity: 0; animation: lgFade .8s ease .9s forwards; }
+.logo-intro .lg-drop { opacity: 0; transform: scale(0) translateY(-8px); animation: lgDrop .9s cubic-bezier(.34,1.56,.64,1) .8s forwards; }
+.logo-intro .lg-atoms path { opacity: 0; animation: lgFade .5s ease 1.25s forwards; }
+.logo-intro .lg-atom { opacity: 0; transform: scale(0); animation: lgPop .55s cubic-bezier(.34,1.56,.64,1) forwards; }
+.logo-intro .lg-atom.a1 { animation-delay: 1.05s; }
+.logo-intro .lg-atom.a2 { animation-delay: 1.15s; }
+.logo-intro .lg-atom.a3 { animation-delay: 1.25s; }
+.logo-intro .lg-word, .logo-intro .lg-three, .logo-intro .lg-sub { opacity: 0; animation: lgUp 1s var(--ease) forwards; }
+.logo-intro .lg-word { animation-delay: .9s; }
+.logo-intro .lg-three { animation-delay: 1.3s; }
+.logo-intro .lg-sub { animation-delay: 1.45s; }
+.logo-intro.logo-shine .lg-shine { animation-delay: 2s; }
+@keyframes lgDraw { to { stroke-dashoffset: 0; } }
+@keyframes lgFade { to { opacity: .8; } }
+@keyframes lgDrop { to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes lgPop { to { opacity: 1; transform: scale(1); } }
+@keyframes lgUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* page intro loader */
+.intro-loader { position: fixed; inset: 0; z-index: 100; background: radial-gradient(ellipse at center, #1a1614 0%, #0A0A0A 70%); display: flex; align-items: center; justify-content: center; transition: opacity .7s var(--ease), visibility .7s; }
+.intro-loader.is-done { opacity: 0; visibility: hidden; }
+.intro-loader .intro-inner { transition: transform .9s var(--ease); }
+.intro-loader.is-done .intro-inner { transform: scale(.92) translateY(-10px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-intro .lg-ring, .logo-intro .lg-arc { stroke-dashoffset: 0; animation: none; }
+  .logo-intro .lg-drop, .logo-intro .lg-atom, .logo-intro .lg-word, .logo-intro .lg-three, .logo-intro .lg-sub, .logo-intro .lg-dots, .logo-intro .lg-atoms path { opacity: 1; transform: none; animation: none; }
+  .lg-shine { animation: none !important; }
+}

@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, ShoppingBag, Instagram, Menu, X, ChevronRight } from "lucide-react";
-import { NAV, IMG, BRAND } from "../../data/mock";
+import { NAV, BRAND } from "../../data/mock";
 import { useCart } from "../../context/CartContext";
+import BrandLogo from "../brand/BrandLogo";
 
-export function Logo({ light = true, className = "h-[46px]" }) {
+export function Logo({ light = true, variant = "horizontal", intro = false, className = "h-[46px]" }) {
   return (
-    <img
-      src={light ? IMG.logoLight : IMG.logoDark}
-      alt="CABELO₃ Dermokozmetik logosu"
-      className={`${className} w-auto select-none`}
-      draggable="false"
-    />
+    <span className={`block ${className}`}>
+      <BrandLogo variant={variant} tone={light ? "light" : "dark"} intro={intro} className="h-full" />
+    </span>
   );
 }
 
@@ -53,7 +51,7 @@ export default function Header() {
       >
         <div className={`rg-container flex items-center justify-between transition-[height] duration-500 ${scrolled ? "h-[64px]" : "h-[84px] max-md:h-[72px]"}`}>
           <Link to="/" aria-label="CABELO₃ ana sayfa" data-testid="header-logo" className="shrink-0">
-            <Logo className={`${scrolled ? "h-[52px]" : "h-[60px] max-md:h-[50px]"} transition-[height] duration-500`} />
+            <Logo className={`${scrolled ? "h-[46px]" : "h-[58px] max-md:h-[44px]"} transition-[height] duration-500`} />
           </Link>
 
           <nav className="hidden xl:flex items-center gap-[34px]" aria-label="Ana menü">
@@ -94,7 +92,7 @@ export default function Header() {
               href={BRAND.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:flex items-center gap-2.5 font-heading text-[16px] text-[#FFFEFE] hover:text-rg-link transition-colors duration-300"
+              className="hidden 2xl:flex items-center gap-2.5 font-heading text-[16px] text-[#FFFEFE] hover:text-rg-link transition-colors duration-300"
               data-testid="header-instagram"
             >
               <Instagram size={20} strokeWidth={1.6} />@{BRAND.instagram}
@@ -135,7 +133,7 @@ export default function Header() {
         aria-hidden={!mobileOpen}
       >
         <div className="rg-container h-[72px] flex items-center justify-between">
-          <Logo className="h-[44px]" />
+          <Logo className="h-[42px]" />
           <button onClick={() => setMobileOpen(false)} aria-label="Menüyü kapat" className="w-11 h-11 flex items-center justify-center text-[#FFFEFE] hover:text-rg-link transition-colors" data-testid="mobile-menu-close">
             <X size={30} strokeWidth={1.4} />
           </button>

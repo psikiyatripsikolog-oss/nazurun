@@ -1,10 +1,11 @@
 import React from "react";
-import { MARQUEE_WORDS, IMG } from "../../data/mock";
+import { MARQUEE_WORDS } from "../../data/mock";
+import BrandLogo from "../brand/BrandLogo";
 
 function Mark() {
   return (
-    <span className="inline-flex items-center justify-center shrink-0 w-[0.95em] h-[0.95em] rounded-full bg-rg-link mx-[0.35em] overflow-hidden">
-      <img src={IMG.mark} alt="" aria-hidden="true" className="h-[58%] w-auto object-contain" style={{ filter: "brightness(0) invert(1)" }} />
+    <span className="inline-flex items-center justify-center shrink-0 w-[0.95em] h-[0.95em] rounded-full bg-rg-dark mx-[0.35em]" aria-hidden="true">
+      <span className="block h-[78%]"><BrandLogo variant="emblem" tone="light" shine={false} title="" className="h-full" /></span>
     </span>
   );
 }
