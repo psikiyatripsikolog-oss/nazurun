@@ -51,7 +51,7 @@ export default function Contact() {
                 <LegalDoc compact sections={[
                   { table: [...SELLER_ROWS, ["Tescilli marka", BRAND.trademark], ["Bağlı olduğu meslek kuruluşu", BRAND.chamber]].filter(([, v]) => v) },
                   { h: "Meslek davranış kuralları", p: `Bağlı olunan meslek kuruluşunun davranış kurallarına ${BRAND.chamberUrl} adresinden ulaşabilirsiniz.` },
-                  { h: "Şikâyet ve cayma bildirimi", p: `Şikâyetlerinizi ve cayma bildirimlerinizi ${BRAND.email} e-posta adresine, ${BRAND.kep} KEP adresine, ${BRAND.phone} numaralı telefona veya ${BRAND.address} adresine yazılı olarak iletebilirsiniz. Cayma için yazdırılabilir Cayma Formu'nu kullanabilirsiniz.` },
+                  { h: "Şikâyet ve cayma bildirimi", p: `Şikâyetlerinizi ve cayma bildirimlerinizi ${BRAND.email} e-posta adresine, ${BRAND.kep ? `${BRAND.kep} KEP adresine, ` : ""}${BRAND.phone} numaralı telefona veya ${BRAND.address} adresine yazılı olarak iletebilirsiniz. Cayma için yazdırılabilir Cayma Formu'nu kullanabilirsiniz.` },
                 ]} />
               </div>
               <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-[16px]">

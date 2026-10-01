@@ -11,14 +11,14 @@ export default function LegalDoc({ sections, compact = false }) {
           {s.p && (Array.isArray(s.p) ? s.p : [s.p]).map((t, j) => <p key={j} className="mb-3 text-[16px]">{t}</p>)}
           {s.list && (
             <ul className="space-y-2">
-              {s.list.map((t, j) => (
+              {s.list.filter(Boolean).map((t, j) => (
                 <li key={j} className="relative pl-5 text-[16px] before:content-[''] before:absolute before:left-0 before:top-[0.7em] before:w-[6px] before:h-[6px] before:rounded-full before:bg-rg-link">{t}</li>
               ))}
             </ul>
           )}
           {s.table && (
             <dl className="mt-1 rounded-[18px] border border-rg-bd overflow-hidden">
-              {s.table.map(([k, v], j) => (
+              {s.table.filter(([, v]) => v !== null && v !== undefined && v !== "").map(([k, v], j) => (
                 <div key={j} className={`grid sm:grid-cols-[230px_1fr] gap-x-6 gap-y-1 px-5 py-3 text-[16px] ${j % 2 ? "bg-rg-bg" : "bg-white/60"}`}>
                   <dt className="font-heading text-rg-title">{k}</dt>
                   <dd className="break-words">{v}</dd>

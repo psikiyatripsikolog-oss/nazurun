@@ -33,7 +33,7 @@ export default function WithdrawalForm() {
               <p className="font-heading">Kime:</p>
               <p className="mt-1">{BRAND.seller}</p>
               <p>Adres: {BRAND.address}</p>
-              <p>E-posta: {BRAND.email} · KEP: {BRAND.kep}</p>
+              <p>E-posta: {BRAND.email}{BRAND.kep && <> · KEP: {BRAND.kep}</>}</p>
             </div>
             <p className="mt-8">Bu formla bildirdiğim üzere aşağıdaki ürünlerin satışına ilişkin sözleşmeden caydığımı beyan ederim.</p>
             <dl className="mt-6 space-y-5">

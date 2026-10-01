@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Checkbox } from "../components/ui/checkbox";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "../components/ui/dialog";
 import { useCart } from "../context/CartContext";
-import { formatTL, TR_CITIES, IMG, S, SHIPPING, PAYMENT } from "../data/mock";
+import { formatTL, TR_CITIES, IMG, S, SHIPPING, PAYMENT, NEUTRAL } from "../data/mock";
 import { preInfoForm, distanceContract, orderTotals } from "../data/legal";
 
 const Field = ({ label, children, className = "" }) => (
@@ -137,7 +137,7 @@ export default function Checkout() {
               <div className="mt-7 space-y-3 p-5 rounded-[20px] bg-rg-bg" data-testid="checkout-legal-info">
                 <p><strong className="text-rg-title">Cayma hakkı:</strong> {S.S3}</p>
                 <p><strong className="text-rg-title">İstisna:</strong> {S.S1}</p>
-                <p><strong className="text-rg-title">İade kargo firması:</strong> {SHIPPING.returnCarrier}</p>
+                <p><strong className="text-rg-title">İade kargo firması:</strong> {SHIPPING.returnCarrier || NEUTRAL.carrier}</p>
                 <p><strong className="text-rg-title">Gönderim bölgesi:</strong> {SHIPPING.region}</p>
                 <p><strong className="text-rg-title">Kabul edilen ödeme araçları:</strong> {PAYMENT.methods}</p>
               </div>
@@ -183,7 +183,7 @@ export default function Checkout() {
       <Dialog open={!!pending} onOpenChange={(o) => !o && setPending(null)}>
         <DialogContent className="max-w-[560px] bg-rg-bg rounded-[24px] p-8 max-md:p-5" data-testid="pending-dialog">
           <DialogTitle className="font-heading text-[26px] text-rg-title flex items-center gap-3"><Info className="text-rg-link" /> Ödeme adımı</DialogTitle>
-          <DialogDescription className="text-[16px] text-rg-text" data-testid="pending-message">{PAYMENT.preMessage}</DialogDescription>
+          <DialogDescription className={PAYMENT.preMessage ? "text-[16px] text-rg-text" : "sr-only"} data-testid="pending-message">{PAYMENT.preMessage || "Sipariş özeti"}</DialogDescription>
           {pending && (
             <div className="text-[16px]">
               <ul className="divide-y divide-rg-bd">

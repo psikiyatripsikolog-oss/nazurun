@@ -4,17 +4,17 @@ import { Truck, Gift, RotateCcw, PackageX, ShieldCheck, MapPin } from "lucide-re
 import Seo from "../components/common/Seo";
 import PageTitle from "../components/common/PageTitle";
 import Reveal from "../components/common/Reveal";
-import { IMG, BRAND, S, SHIPPING } from "../data/mock";
+import { IMG, BRAND, S, SHIPPING, NEUTRAL, SINGLE_FEE_TEXT } from "../data/mock";
 
 export default function Shipping() {
   const cards = [
     { icon: Truck, title: "Teslim", text: S.S2 },
-    { icon: Gift, title: "Kargo ücreti", text: `3'lü Set içeren siparişlerde kargo ücretsizdir. Tek ürün siparişlerinde kargo ücreti: ${SHIPPING.singleProductFee}.` },
+    { icon: Gift, title: "Kargo ücreti", text: `3'lü Set içeren siparişlerde kargo ücretsizdir. ${SINGLE_FEE_TEXT}` },
     { icon: MapPin, title: "Gönderim bölgesi", text: `${SHIPPING.region}. Teslim her hâlde en geç 30 gündür.` },
   ];
   const steps = [
     `Cayma bildiriminizi ${BRAND.email} / ${BRAND.phone} üzerinden ya da Cayma Formu'nu doldurarak bize iletin.`,
-    `Ürünü, faturasıyla birlikte ${SHIPPING.returnCarrier} ile ${BRAND.address} adresine gönderin.`,
+    SHIPPING.returnCarrier ? `Ürünü, faturasıyla birlikte ${SHIPPING.returnCarrier} ile ${BRAND.address} adresine gönderin.` : `${NEUTRAL.carrier} Ürünü faturasıyla birlikte ${BRAND.address} adresine gönderin.`,
     "Ürün bize ulaştıktan sonra para iadesi aşağıdaki süre ve koşullarla yapılır.",
   ];
   return (

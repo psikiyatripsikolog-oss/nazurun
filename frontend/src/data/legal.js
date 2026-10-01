@@ -1,4 +1,4 @@
-import { BRAND, SHIPPING, PAYMENT, CONTRACT, S, PRODUCTS, formatTL } from "./mock";
+import { BRAND, SHIPPING, PAYMENT, CONTRACT, S, PRODUCTS, formatTL, NEUTRAL, SINGLE_FEE_TEXT } from "./mock";
 
 // Yasal metinler – değerler data/mock.js içindeki sabitlerden okunur.
 // Her belge: [{ h: "Başlık", p?: "paragraf" | [..], list?: [..], table?: [[k, v], ...] }]
@@ -18,14 +18,14 @@ export const SELLER_ROWS = [
 ];
 
 export const shippingFeeText = (hasSet) =>
-  hasSet ? "Ücretsiz (3'lü Set)" : SHIPPING.singleProductFee;
+  hasSet ? "Ücretsiz (3'lü Set)" : SHIPPING.singleProductFee || NEUTRAL.fee;
 
 export const orderTotals = (subtotal, hasSet) => {
   const fee = hasSet ? 0 : SHIPPING.singleProductFeeAmount;
   const known = fee !== null && fee !== undefined;
   return {
-    feeText: hasSet ? "Ücretsiz" : known ? formatTL(fee) : SHIPPING.singleProductFee,
-    totalText: known ? formatTL(subtotal + fee) : `${formatTL(subtotal)} + ${SHIPPING.singleProductFee}`,
+    feeText: hasSet ? "Ücretsiz" : known ? formatTL(fee) : SHIPPING.singleProductFee || "Ödeme ekranında gösterilir",
+    totalText: known ? formatTL(subtotal + fee) : `${formatTL(subtotal)} + kargo ücreti`,
   };
 };
 
@@ -43,7 +43,7 @@ const itemsBlock = (ctx) => {
       list: [
         `Ürün adı, adedi ve KDV dahil birim fiyatı: ${BLANK}`,
         `KDV dahil ürün toplamı: ${BLANK}`,
-        `Kargo ücreti: 3'lü Set içeren siparişlerde ücretsiz; tek ürün siparişlerinde ${SHIPPING.singleProductFee}`,
+        `Kargo ücreti: 3'lü Set içeren siparişlerde ücretsizdir. ${SINGLE_FEE_TEXT}`,
         `KDV dahil genel toplam: ${BLANK}`,
       ],
     };
@@ -90,13 +90,13 @@ export function distanceContract(ctx) {
     { h: "2. Konu", p: `Bu sözleşmenin konusu, alıcının ${BRAND.website} internet sitesi üzerinden elektronik ortamda sipariş verdiği aşağıda nitelikleri ve satış fiyatı belirtilen ürünlerin satışı ve teslimi ile ilgili olarak 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği hükümleri gereğince tarafların hak ve yükümlülüklerinin belirlenmesidir.` },
     { h: "3. Ürün ve ödeme", ...itemsBlock(ctx) },
     { p: `Ürünlerin temel nitelikleri ürün sayfalarında ve Ön Bilgilendirme Formu'nda yer alır. Ödeme ${PAYMENT.methods} ile PayTR güvenli ödeme altyapısı üzerinden alınır. Siparişi onaylayan alıcı ödeme yükümlülüğü altına girer.` },
-    { h: "4. Teslimat", list: [S.S2, `Gönderim bölgesi: ${SHIPPING.region}.`, "Teslim her hâlde sipariş tarihinden itibaren en geç 30 gündür. Bu süre içinde teslim edilemeyen siparişlerde alıcı sözleşmeyi feshedebilir.", "Kargo ücreti 3'lü Set içeren siparişlerde ücretsizdir; tek ürün siparişlerinde " + SHIPPING.singleProductFee + "."] },
+    { h: "4. Teslimat", list: [S.S2, `Gönderim bölgesi: ${SHIPPING.region}.`, "Teslim her hâlde sipariş tarihinden itibaren en geç 30 gündür. Bu süre içinde teslim edilemeyen siparişlerde alıcı sözleşmeyi feshedebilir.", `Kargo ücreti 3'lü Set içeren siparişlerde ücretsizdir. ${SINGLE_FEE_TEXT}`] },
     { h: "5. Cayma hakkı", list: [S.S3, "Cayma bildirimi; e-posta, KEP, telefon veya posta yoluyla ya da Cayma Formu doldurularak satıcıya iletilir.", S.S4] },
     { h: "6. Cayma hakkının istisnası", p: S.S1 },
     { h: "7. Para iadesi", p: S.S5 },
     { h: "8. Hasarlı, eksik veya hatalı ürün", p: S.S6 },
     { h: "9. Uyuşmazlıkların çözümü", p: "Bu sözleşmeden doğan uyuşmazlıklarda, Ticaret Bakanlığınca her yıl ilan edilen parasal sınırlar dahilinde alıcının yerleşim yerindeki veya işlemin yapıldığı yerdeki Tüketici Hakem Heyeti, bu sınırların üzerindeki uyuşmazlıklarda Tüketici Mahkemesi yetkilidir. Kanunen dava şartı olan hâllerde dava açılmadan önce arabulucuya başvurulur." },
-    { h: "10. Sözleşmenin kuruluşu ve saklanması", list: ["Sözleşme; alıcının ödeme adımında Ön Bilgilendirme Formu'nu ve bu sözleşmeyi okuyup onaylaması ve \"Siparişi Onayla ve Öde\" düğmesine basmasıyla elektronik ortamda kurulur.", `Saklama ve erişim: ${CONTRACT.storage}`] },
+    { h: "10. Sözleşmenin kuruluşu ve saklanması", list: ["Sözleşme; alıcının ödeme adımında Ön Bilgilendirme Formu'nu ve bu sözleşmeyi okuyup onaylaması ve \"Siparişi Onayla ve Öde\" düğmesine basmasıyla elektronik ortamda kurulur.", CONTRACT.storage ? `Saklama ve erişim: ${CONTRACT.storage}` : null] },
     { h: "11. Yürürlük", p: `Alıcı, bu sözleşmenin tüm koşullarını ve Ön Bilgilendirme Formu'nu okuyup kabul ettiğini beyan eder. Sözleşme, alıcının siparişi onayladığı tarihte yürürlüğe girer.${ctx?.date ? ` Tarih: ${ctx.date}` : ""}` },
   ];
 }
@@ -108,7 +108,7 @@ export const KVKK = [
   { h: "4. Aktarılan alıcı grupları", list: ["Kargo şirketleri (teslimat için)", "Ödeme kuruluşu PayTR (ödemenin alınması için; kart bilgileri doğrudan ödeme kuruluşuna iletilir)", "Barındırma (hosting) hizmeti sağlayıcısı", "Mali müşavir / muhasebe hizmeti sağlayıcısı", "Talep hâlinde yetkili kamu kurum ve kuruluşları"] },
   { h: "5. Toplama yöntemi ve hukuki sebep", p: "Kişisel verileriniz internet sitemizdeki ödeme adımı, e-posta, telefon ve Instagram üzerinden elektronik ortamda toplanır. Veriler Kanun'un 5/2-c (sözleşmenin kurulması ve ifası), 5/2-ç (hukuki yükümlülük), 5/2-e (bir hakkın tesisi, kullanılması veya korunması) ve 5/2-f (meşru menfaat) bentlerine; ticari ileti gönderimi ise 5/1 uyarınca açık rızanıza dayanır." },
   { h: "6. Kanun'un 11. maddesi kapsamındaki haklarınız", list: ["Kişisel verilerinizin işlenip işlenmediğini öğrenme ve işlenmişse bilgi talep etme", "İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme", "Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme", "Eksik veya yanlış işlenmişse düzeltilmesini isteme", "Kanun'un 7. maddesi çerçevesinde silinmesini veya yok edilmesini isteme", "Düzeltme, silme ve yok etme işlemlerinin aktarılan üçüncü kişilere bildirilmesini isteme", "Münhasıran otomatik sistemlerle analiz edilmesi sonucu aleyhinize bir sonucun ortaya çıkmasına itiraz etme", "Kanuna aykırı işleme nedeniyle zarara uğramanız hâlinde zararın giderilmesini talep etme"] },
-  { h: "7. Başvuru yolu", p: `Haklarınıza ilişkin taleplerinizi, Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ'e uygun olarak yazılı şekilde ${BRAND.address} adresine, kayıtlı elektronik posta ile ${BRAND.kep} adresine veya sistemimizde kayıtlı e-posta adresinizden ${BRAND.email} adresine iletebilirsiniz. Başvurular en geç 30 gün içinde ücretsiz olarak sonuçlandırılır.` },
+  { h: "7. Başvuru yolu", p: `Haklarınıza ilişkin taleplerinizi, Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ'e uygun olarak yazılı şekilde ${BRAND.address} adresine${BRAND.kep ? `, kayıtlı elektronik posta ile ${BRAND.kep} adresine` : ""} veya sistemimizde kayıtlı e-posta adresinizden ${BRAND.email} adresine iletebilirsiniz. Başvurular en geç 30 gün içinde ücretsiz olarak sonuçlandırılır.` },
 ];
 
 export const PRIVACY = [
@@ -119,7 +119,7 @@ export const PRIVACY = [
   { h: "Bilgilerin korunması", p: "Bilgileriniz yalnızca yukarıdaki amaçlarla ve gerekli olan kişilerle (kargo, ödeme kuruluşu, barındırma ve muhasebe hizmeti sağlayıcıları) paylaşılır; erişim yetkili kişilerle sınırlandırılır." },
   { h: "Çerezler ve tarayıcı depolaması", p: "Sitede yalnızca sitenin çalışması için zorunlu tarayıcı kayıtları kullanılır. Ayrıntılar için Çerez Politikası'na bakabilirsiniz.", link: { to: "/cerez-politikasi", label: "Çerez Politikası" } },
   { h: "Sözleşmenin kuruluşu", list: ["1) Ürünler sepete eklenir; adet değiştirilebilir veya ürün silinebilir.", "2) Ödeme adımında teslimat bilgileri girilir ve hatalı bilgiler düzeltilebilir.", "3) Sipariş özeti, Ön Bilgilendirme Formu ve Mesafeli Satış Sözleşmesi görüntülenir ve onaylanır.", "4) \"Siparişi Onayla ve Öde\" düğmesiyle ödeme adımına geçilir; sözleşme bu onayla kurulur."] },
-  { h: "Saklama ve erişim", p: CONTRACT.storage },
+  ...(CONTRACT.storage ? [{ h: "Saklama ve erişim", p: CONTRACT.storage }] : []),
   { h: "Başvuru", p: `Bilgilerinizle ilgili her türlü talep için ${BRAND.email}, ${BRAND.phone} veya ${BRAND.address} üzerinden bize ulaşabilirsiniz. Kişisel veri haklarınız için KVKK Aydınlatma Metni'ne bakabilirsiniz.`, link: { to: "/kvkk", label: "KVKK Aydınlatma Metni" } },
 ];
 

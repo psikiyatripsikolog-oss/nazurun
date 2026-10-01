@@ -13,49 +13,66 @@ export const BRAND = {
   instagram: "cabelo3haircosmetic",
   instagramUrl: "https://www.instagram.com/cabelo3haircosmetic/",
   website: "cabelo3.com",
-  mersis: "[MERSİS NO]",
+  mersis: "", // boşken sitede gösterilmez
   taxInfo: "Bayraklı V.D. / 6301394549",
   address: "Mansuroğlu Mah. 291. Sk. No:11 Kat:1 Daire:5 Bayraklı / İzmir",
   phone: "0533 898 53 57",
   email: "nazifesoyubol@gmail.com",
-  kep: "[KEP ADRESİ]",
+  kep: "", // boşken sitede gösterilmez
   chamber: "İzmir Ticaret Odası",
   chamberUrl: "https://www.izto.org.tr",
   trademark: null, // tescilli marka bilgisi yok: sitede gösterilmez
 };
 
 export const SHIPPING = {
-  dispatchTime: "[KARGOYA VERİLİŞ SÜRESİ]",
-  deliveryTime: "[TESLİM SÜRESİ]",
-  singleProductFee: "[TEK ÜRÜN KARGO ÜCRETİ]",
+  // Boş bırakılan alanlar yerine sitede nötr cümleler gösterilir.
+  dispatchTime: "", // ör. "1-2 iş günü içinde"
+  deliveryTime: "", // ör. "2-4 iş günü"
+  singleProductFee: "", // ör. "90 TL"
   // Tek ürün kargo ücreti belli olduğunda sayı olarak da yazın (ör. 90). Genel toplam bu sayıyla hesaplanır.
   singleProductFeeAmount: null,
-  returnCarrier: "[İADE KARGO FİRMASI]",
+  returnCarrier: "", // ör. "X Kargo"
   region: "Türkiye'nin tüm illeri",
 };
 
 export const PAYMENT = {
   methods: "Kredi kartı ve banka kartı (PayTR güvenli ödeme altyapısı)",
-  preMessage: "[ÖDEME ÖNCESİ GEÇİCİ MESAJ]",
+  preMessage: "", // boşken gösterilmez
 };
 
 export const CONTRACT = {
-  storage: "[SÖZLEŞME SAKLAMA / ERİŞİM BİLGİSİ]",
+  storage: "", // boşken gösterilmez
 };
 
 export const PRODUCT_INFO = {
-  manufacturer: "[ÜRETİCİ / İTHALATÇI]",
-  origin: "[ÜRETİM YERİ]",
+  manufacturer: "", // boşken gösterilmez
+  origin: "", // boşken gösterilmez
   defaultStock: "Stokta",
 };
 
-// Sabit cümleler (S1–S6) – her yerde birebir aynı kullanılır
+// Sabit cümleler (S1–S6) – her yerde birebir aynı kullanılır.
+// İlgili değer boşken, uydurma bilgi yerine nötr cümle gösterilir.
+export const NEUTRAL = {
+  delivery: "Sipariş, yasal süre olan 30 günü aşmamak kaydıyla teslim edilir; kargoya veriliş ve tahmini teslim süresi sipariş onayında bildirilir.",
+  fee: "Kargo ücreti ödeme adımında sepet toplamında gösterilir.",
+  carrier: "İade gönderiminde kullanılacak kargo firması, iade talebinize yanıt olarak bildirilir.",
+};
+
+// Tek ürün siparişlerinde kargo ücreti cümlesi
+export const SINGLE_FEE_TEXT = SHIPPING.singleProductFee
+  ? `Tek ürün siparişlerinde kargo ücreti: ${SHIPPING.singleProductFee}.`
+  : NEUTRAL.fee;
+
 export const S = {
   S1: "Koruyucu bandı veya mührü açılmış ürünler, sağlık ve hijyen nedeniyle iade edilemez. Açılmamış ürünler iade edilebilir.",
-  S2: `Siparişler ${SHIPPING.dispatchTime} kargoya verilir, ${SHIPPING.deliveryTime} içinde teslim edilir.`,
+  S2: SHIPPING.dispatchTime && SHIPPING.deliveryTime
+    ? `Siparişler ${SHIPPING.dispatchTime} kargoya verilir, ${SHIPPING.deliveryTime} içinde teslim edilir.`
+    : NEUTRAL.delivery,
   S3: "Ürünü teslim aldığınız günden başlayarak 14 gün içinde, gerekçe göstermeden ve ceza ödemeden cayabilirsiniz. Cayma hakkını siparişi verdiğiniz andan ürünü teslim alana kadar da kullanabilirsiniz.",
-  S4: `Ürünü ${SHIPPING.returnCarrier} ile gönderirseniz iade kargo ücreti sizden alınmaz. Bu firmanın bulunduğunuz yerde şubesi yoksa ürün, ek ücret alınmadan sizden teslim alınır.`,
-  S5: `Ürün iade için ${SHIPPING.returnCarrier} kargosuna teslim edildikten sonra 14 gün içinde, teslimat ücreti dahil ödediğiniz tutarın tamamı, ödemede kullandığınız ödeme aracına tek seferde ve masrafsız iade edilir. Ürünü başka bir kargoyla gönderirseniz süre ürün bize ulaştığında başlar. Teslimden önce caydıysanız süre bildiriminiz bize ulaştığında başlar.`,
+  S4: SHIPPING.returnCarrier
+    ? `Ürünü ${SHIPPING.returnCarrier} ile gönderirseniz iade kargo ücreti sizden alınmaz. Bu firmanın bulunduğunuz yerde şubesi yoksa ürün, ek ücret alınmadan sizden teslim alınır.`
+    : `${NEUTRAL.carrier} Ürünü bu firma ile gönderirseniz iade kargo ücreti sizden alınmaz. Bu firmanın bulunduğunuz yerde şubesi yoksa ürün, ek ücret alınmadan sizden teslim alınır.`,
+  S5: `Ürün iade için ${SHIPPING.returnCarrier ? `${SHIPPING.returnCarrier} kargosuna` : "bildirilen kargo firmasına"} teslim edildikten sonra 14 gün içinde, teslimat ücreti dahil ödediğiniz tutarın tamamı, ödemede kullandığınız ödeme aracına tek seferde ve masrafsız iade edilir. Ürünü başka bir kargoyla gönderirseniz süre ürün bize ulaştığında başlar. Teslimden önce caydıysanız süre bildiriminiz bize ulaştığında başlar.`,
   S6: `Hasarlı, eksik ya da hatalı ürün ulaşırsa ${BRAND.email} / ${BRAND.phone} üzerinden bize bildirin; yasal haklarınız saklıdır.`,
 };
 
@@ -354,7 +371,7 @@ export const FAQS = [
   },
   {
     q: "Kargo ne zaman gelir?",
-    a: `${S.S2} 3'lü Set siparişlerinde kargo ücretsizdir; tek ürün siparişlerinde kargo ücreti ${SHIPPING.singleProductFee}.`,
+    a: `${S.S2} 3'lü Set siparişlerinde kargo ücretsizdir. ${SINGLE_FEE_TEXT}`,
   },
   {
     q: "İade nasıl yapılır?",

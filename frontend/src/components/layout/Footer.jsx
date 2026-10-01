@@ -93,7 +93,7 @@ export default function Footer() {
             <li className="flex gap-3"><MapPin size={17} className="text-rg-link shrink-0 mt-1" /> <span>{BRAND.address}</span></li>
             <li className="flex gap-3"><Instagram size={17} className="text-rg-link shrink-0 mt-1" /> <a href={BRAND.instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-rg-link transition-colors">@{BRAND.instagram}</a></li>
           </ul>
-          <p className="mt-6 text-[14px] leading-relaxed text-rg-meta">{BRAND.seller}<br />MERSİS: {BRAND.mersis}</p>
+          <p className="mt-6 text-[14px] leading-relaxed text-rg-meta">{BRAND.seller}{BRAND.mersis && <><br />MERSİS: {BRAND.mersis}</>}</p>
         </div>
 
         <div className="col-span-12 sm:col-span-6 lg:col-span-4">

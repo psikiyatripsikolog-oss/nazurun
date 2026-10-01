@@ -9,7 +9,7 @@ import ProductCard from "../components/common/ProductCard";
 import { QtyStepper } from "../components/layout/CartDrawer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { useCart } from "../context/CartContext";
-import { getProduct, getProductById, PRODUCTS, formatTL, BRAND, S, SHIPPING, PRODUCT_INFO } from "../data/mock";
+import { getProduct, getProductById, PRODUCTS, formatTL, BRAND, S, SINGLE_FEE_TEXT, PRODUCT_INFO } from "../data/mock";
 import NotFound from "./NotFound";
 
 export default function ProductDetail() {
@@ -109,14 +109,14 @@ export default function ProductDetail() {
                 <button onClick={onAdd} className="rg-btn" data-testid="product-add-to-cart"><ShoppingBag size={18} /> Sepete Ekle</button>
               </div>
               <div className="mt-8 space-y-4 text-[16px]" data-testid="product-delivery-info">
-                <p className="flex items-start gap-3"><Truck size={18} className="text-rg-link shrink-0 mt-1" /> <span>{S.S2} Kargo ücreti: {product.freeShipping ? "ücretsiz (3'lü Set)" : SHIPPING.singleProductFee}.</span></p>
+                <p className="flex items-start gap-3"><Truck size={18} className="text-rg-link shrink-0 mt-1" /> <span>{S.S2} {product.freeShipping ? "Kargo ücreti: ücretsiz (3'lü Set)." : SINGLE_FEE_TEXT}</span></p>
                 <p className="flex items-start gap-3"><RotateCcw size={18} className="text-rg-link shrink-0 mt-1" /> <span>{S.S1} <Link to="/kargo-ve-iade" className="underline text-rg-title hover:text-rg-link" data-testid="product-return-link">İade koşulları</Link></span></p>
                 <a href={BRAND.instagramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-rg-link transition-colors"><Instagram size={18} className="text-rg-link shrink-0" /> Sorularınız için DM</a>
               </div>
               <dl className="mt-6 grid grid-cols-[170px_1fr] gap-x-4 gap-y-2 text-[15px]" data-testid="product-extra-info">
                 <dt className="text-rg-title font-heading">Hacim</dt><dd>{product.volume}</dd>
-                <dt className="text-rg-title font-heading">Üretici / İthalatçı</dt><dd>{PRODUCT_INFO.manufacturer}</dd>
-                <dt className="text-rg-title font-heading">Üretim yeri</dt><dd>{PRODUCT_INFO.origin}</dd>
+                {PRODUCT_INFO.manufacturer && <><dt className="text-rg-title font-heading">Üretici / İthalatçı</dt><dd>{PRODUCT_INFO.manufacturer}</dd></>}
+                {PRODUCT_INFO.origin && <><dt className="text-rg-title font-heading">Üretim yeri</dt><dd>{PRODUCT_INFO.origin}</dd></>}
               </dl>
               <p className="mt-8 p-5 rounded-[20px] border border-rg-bd text-[15px] text-rg-title" data-testid="product-routine-note">{product.routineNote}</p>
             </Reveal>
