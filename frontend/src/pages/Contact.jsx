@@ -49,7 +49,7 @@ export default function Contact() {
               <h2 className="font-heading text-[29px] flex items-center gap-3"><Building2 className="text-rg-link" /> Satıcı künyesi</h2>
               <div className="mt-7" data-testid="seller-imprint">
                 <LegalDoc compact sections={[
-                  { table: [...SELLER_ROWS, ["Tescilli marka", BRAND.trademark], ["Bağlı olduğu meslek kuruluşu", BRAND.chamber]] },
+                  { table: [...SELLER_ROWS, ["Tescilli marka", BRAND.trademark], ["Bağlı olduğu meslek kuruluşu", BRAND.chamber]].filter(([, v]) => v) },
                   { h: "Meslek davranış kuralları", p: `Bağlı olunan meslek kuruluşunun davranış kurallarına ${BRAND.chamberUrl} adresinden ulaşabilirsiniz.` },
                   { h: "Şikâyet ve cayma bildirimi", p: `Şikâyetlerinizi ve cayma bildirimlerinizi ${BRAND.email} e-posta adresine, ${BRAND.kep} KEP adresine, ${BRAND.phone} numaralı telefona veya ${BRAND.address} adresine yazılı olarak iletebilirsiniz. Cayma için yazdırılabilir Cayma Formu'nu kullanabilirsiniz.` },
                 ]} />

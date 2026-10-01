@@ -6,22 +6,22 @@
 // ======================================================================
 
 export const BRAND = {
-  name: "CABELO₃ Dermokozmetik",
+  name: "CABELO₃",
   short: "CABELO₃",
   owner: "Nazife Soyubol",
-  seller: "NEFES SAÇ EKİMİ DANIŞMANLIK TİC. LTD. ŞTİ.",
+  seller: "NEFES SAÇ EKİMİ DANIŞMANLIK TİCARET LİMİTED ŞİRKETİ",
   instagram: "cabelo3haircosmetic",
   instagramUrl: "https://www.instagram.com/cabelo3haircosmetic/",
   website: "cabelo3.com",
   mersis: "[MERSİS NO]",
-  taxInfo: "[VERGİ DAİRESİ / VKN]",
-  address: "[AÇIK ADRES]",
-  phone: "[TELEFON]",
-  email: "[E-POSTA]",
+  taxInfo: "Bayraklı V.D. / 6301394549",
+  address: "Mansuroğlu Mah. 291. Sk. No:11 Kat:1 Daire:5 Bayraklı / İzmir",
+  phone: "0533 898 53 57",
+  email: "nazifesoyubol@gmail.com",
   kep: "[KEP ADRESİ]",
-  chamber: "[TİCARET ODASI]",
-  chamberUrl: "[ODA İNTERNET ADRESİ]",
-  trademark: "[TESCİLLİ MARKA — varsa]",
+  chamber: "İzmir Ticaret Odası",
+  chamberUrl: "https://www.izto.org.tr",
+  trademark: null, // tescilli marka bilgisi yok: sitede gösterilmez
 };
 
 export const SHIPPING = {
@@ -31,11 +31,11 @@ export const SHIPPING = {
   // Tek ürün kargo ücreti belli olduğunda sayı olarak da yazın (ör. 90). Genel toplam bu sayıyla hesaplanır.
   singleProductFeeAmount: null,
   returnCarrier: "[İADE KARGO FİRMASI]",
-  region: "[GÖNDERİM BÖLGESİ]",
+  region: "Türkiye'nin tüm illeri",
 };
 
 export const PAYMENT = {
-  methods: "[KABUL EDİLEN ÖDEME ARAÇLARI]",
+  methods: "Kredi kartı ve banka kartı (PayTR güvenli ödeme altyapısı)",
   preMessage: "[ÖDEME ÖNCESİ GEÇİCİ MESAJ]",
 };
 
