@@ -13,7 +13,7 @@ export const BRAND = {
   instagram: "cabelo3haircosmetic",
   instagramUrl: "https://www.instagram.com/cabelo3haircosmetic/",
   website: "cabelo3.com",
-  mersis: "", // boşken sitede gösterilmez
+  mersis: "0630139454900001", // Ticaret Sicili kaydı (01.10)
   taxInfo: "Bayraklı V.D. / 6301394549",
   address: "Mansuroğlu Mah. 291. Sk. No:11 Kat:1 Daire:5 Bayraklı / İzmir",
   phone: "0533 898 53 57",
@@ -45,7 +45,7 @@ export const CONTRACT = {
 };
 
 export const PRODUCT_INFO = {
-  manufacturer: "", // boşken gösterilmez
+  manufacturer: "Mie Kozmetik ve İlaç San. Tic. Ltd. Şti. – Atakent Mah. 221. Sk. Rota Office A Blok No:3/A Küçükçekmece / İstanbul", // üretici antetli kâğıdı (01.10)
   origin: "", // boşken gösterilmez
   defaultStock: "Stokta",
 };
