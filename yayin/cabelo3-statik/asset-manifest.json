@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/static/css/main.41ba135c.css",
+    "main.js": "/static/js/main.d24ebcd0.js",
+    "static/media/onest-latin.woff2": "/static/media/onest-latin.61e67dc12923318022ca.woff2",
+    "static/media/onest-latin-ext.woff2": "/static/media/onest-latin-ext.ac1c020ee1960e51b1dd.woff2",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.41ba135c.css",
+    "static/js/main.d24ebcd0.js"
+  ]
+}

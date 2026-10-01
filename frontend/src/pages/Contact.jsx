@@ -1,53 +1,41 @@
-import React, { useState } from "react";
-import { Instagram, Phone, Mail, MapPin, Send } from "lucide-react";
-import { toast } from "sonner";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Instagram, Phone, Mail, MapPin, Building2, ExternalLink } from "lucide-react";
 import Seo from "../components/common/Seo";
 import PageTitle from "../components/common/PageTitle";
 import Reveal from "../components/common/Reveal";
+import LegalDoc from "../components/common/LegalDoc";
 import { BRAND, IMG } from "../data/mock";
+import { SELLER_ROWS } from "../data/legal";
 
 const INFO = [
+  { icon: Mail, label: "E-posta", value: BRAND.email },
+  { icon: Phone, label: "Telefon", value: BRAND.phone },
+  { icon: MapPin, label: "Merkez adresi", value: BRAND.address },
   { icon: Instagram, label: "Instagram", value: `@${BRAND.instagram}`, href: BRAND.instagramUrl },
-  { icon: Phone, label: "Telefon", value: "yakında" },
-  { icon: Mail, label: "E-posta", value: "yakında" },
-  { icon: MapPin, label: "Adres", value: "yakında" },
 ];
 
 export default function Contact() {
-  const [f, setF] = useState({ name: "", email: "", subject: "", message: "" });
-  const [sent, setSent] = useState(false);
-  const set = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }));
-
-  const submit = (e) => {
-    e.preventDefault();
-    if (!f.name.trim() || !f.email.trim() || !f.message.trim()) return toast.error("Lütfen ad, e-posta ve mesaj alanlarını doldurun.");
-    if (!/^\S+@\S+\.\S+$/.test(f.email)) return toast.error("Geçerli bir e-posta adresi girin.");
-    setSent(true);
-    setF({ name: "", email: "", subject: "", message: "" });
-    toast.success("Mesajınız alındı. En kısa sürede dönüş yapacağız.");
-  };
-
   return (
     <main data-testid="contact-page">
-      <Seo title="İletişim" description="CABELO₃ Dermokozmetik ile iletişime geçin. Sipariş ve bilgi için Instagram @cabelo3haircosmetic üzerinden DM gönderebilirsiniz." />
+      <Seo title="İletişim" description={`${BRAND.seller} – CABELO₃ Dermokozmetik iletişim ve künye bilgileri, şikâyet ve cayma bildirimi için başvuru yolları.`} />
       <PageTitle title="İletişim" crumbs={[{ label: "İletişim" }]} image={IMG.reelPlant} />
       <section className="rg-section bg-rg-bg">
         <div className="rg-container grid grid-cols-12 gap-y-14 lg:gap-x-16">
           <div className="col-span-12 lg:col-span-5">
             <Reveal><p className="rg-subtitle">Bize ulaşın</p></Reveal>
             <Reveal delay={100}><h2 className="rg-h2 mt-5">Sipariş ve bilgi için yanınızdayız</h2></Reveal>
-            <Reveal delay={200}><p className="mt-7 max-w-[460px]">En hızlı yanıt için Instagram hesabımıza DM gönderebilir ya da formu doldurabilirsiniz.</p></Reveal>
             <ul className="mt-10 space-y-4">
               {INFO.map((c, i) => (
                 <Reveal as="li" key={c.label} delay={i * 90}>
                   <div className="flex items-center gap-5 p-5 rounded-[24px] bg-rg-bg2" data-testid={`contact-info-${i}`}>
                     <span className="w-14 h-14 rounded-full bg-rg-link text-white flex items-center justify-center shrink-0"><c.icon size={22} strokeWidth={1.5} /></span>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-[14px] text-rg-meta">{c.label}</p>
                       {c.href ? (
-                        <a href={c.href} target="_blank" rel="noopener noreferrer" className="font-heading text-[19px] text-rg-title hover:text-rg-link transition-colors">{c.value}</a>
+                        <a href={c.href} target="_blank" rel="noopener noreferrer" className="font-heading text-[18px] text-rg-title hover:text-rg-link transition-colors break-words">{c.value}</a>
                       ) : (
-                        <p className="font-heading text-[19px] text-rg-meta italic">{c.value}</p>
+                        <p className="font-heading text-[18px] text-rg-title break-words">{c.value}</p>
                       )}
                     </div>
                   </div>
@@ -57,17 +45,21 @@ export default function Contact() {
           </div>
 
           <Reveal delay={150} className="col-span-12 lg:col-span-7">
-            <form onSubmit={submit} className="rounded-[30px] bg-rg-bg2 p-12 max-md:p-7" data-testid="contact-form" noValidate>
-              <h3 className="font-heading text-[31px]">Mesaj gönderin</h3>
-              <div className="mt-8 grid sm:grid-cols-2 gap-5">
-                <input className="rg-input" placeholder="Adınız *" aria-label="Adınız" value={f.name} onChange={set("name")} data-testid="contact-name" />
-                <input className="rg-input" type="email" placeholder="E-posta *" aria-label="E-posta" value={f.email} onChange={set("email")} data-testid="contact-email" />
-                <input className="rg-input sm:col-span-2" placeholder="Konu" aria-label="Konu" value={f.subject} onChange={set("subject")} data-testid="contact-subject" />
-                <textarea className="rg-input sm:col-span-2" placeholder="Mesajınız *" aria-label="Mesajınız" value={f.message} onChange={set("message")} data-testid="contact-message" />
+            <div className="rounded-[30px] bg-rg-bg2 p-12 max-md:p-6">
+              <h2 className="font-heading text-[29px] flex items-center gap-3"><Building2 className="text-rg-link" /> Satıcı künyesi</h2>
+              <div className="mt-7" data-testid="seller-imprint">
+                <LegalDoc compact sections={[
+                  { table: [...SELLER_ROWS, ["Tescilli marka", BRAND.trademark], ["Bağlı olduğu meslek kuruluşu", BRAND.chamber]] },
+                  { h: "Meslek davranış kuralları", p: `Bağlı olunan meslek kuruluşunun davranış kurallarına ${BRAND.chamberUrl} adresinden ulaşabilirsiniz.` },
+                  { h: "Şikâyet ve cayma bildirimi", p: `Şikâyetlerinizi ve cayma bildirimlerinizi ${BRAND.email} e-posta adresine, ${BRAND.kep} KEP adresine, ${BRAND.phone} numaralı telefona veya ${BRAND.address} adresine yazılı olarak iletebilirsiniz. Cayma için yazdırılabilir Cayma Formu'nu kullanabilirsiniz.` },
+                ]} />
               </div>
-              <button type="submit" className="rg-btn mt-7" data-testid="contact-submit"><Send size={16} /> Gönder</button>
-              {sent && <p className="mt-5 text-[15px] text-rg-link" data-testid="contact-success">Teşekkürler! Mesajınız alındı.</p>}
-            </form>
+              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-[16px]">
+                <Link to="/cayma-formu" className="rg-link">Cayma Formu <ExternalLink size={14} /></Link>
+                <Link to="/kargo-ve-iade" className="rg-link">Teslimat ve İade Şartları</Link>
+                <Link to="/kvkk" className="rg-link">KVKK Aydınlatma Metni</Link>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

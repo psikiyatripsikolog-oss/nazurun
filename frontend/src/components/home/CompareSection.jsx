@@ -8,7 +8,7 @@ export default function CompareSection() {
   return (
     <section className="rg-section bg-rg-bg2" data-testid="compare-section">
       <div className="rg-narrow">
-        <SectionTitle sub="Ürün ve doku" title="Kutudan köpüğe, yakından tanıyın" />
+        <SectionTitle sub="Ürün ve doku" title="Kutudan köpüğe, CABELO₃ dokusu" />
         <Reveal delay={150} className="mt-14">
           <CompareSlider
             left={IMG.set}

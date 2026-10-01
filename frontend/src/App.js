@@ -13,7 +13,8 @@ import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import OrderSuccess from "./pages/OrderSuccess";
+import WithdrawalForm from "./pages/WithdrawalForm";
+import PaymentOptions from "./pages/PaymentOptions";
 import About from "./pages/About";
 import Ingredients from "./pages/Ingredients";
 import Guide from "./pages/Guide";
@@ -47,7 +48,6 @@ function App() {
             <Route path="/urun/:slug" element={<ProductDetail />} />
             <Route path="/sepet" element={<Cart />} />
             <Route path="/odeme" element={<Checkout />} />
-            <Route path="/siparis-alindi/:orderNo" element={<OrderSuccess />} />
             <Route path="/hakkimizda" element={<About />} />
             <Route path="/bilesenler" element={<Ingredients />} />
             <Route path="/kullanim-rehberi" element={<Guide />} />
@@ -59,6 +59,10 @@ function App() {
             <Route path="/kvkk" element={<Legal doc="kvkk" />} />
             <Route path="/gizlilik-politikasi" element={<Legal doc="gizlilik" />} />
             <Route path="/mesafeli-satis-sozlesmesi" element={<Legal doc="mesafeli" />} />
+            <Route path="/on-bilgilendirme-formu" element={<Legal doc="onbilgi" />} />
+            <Route path="/cerez-politikasi" element={<Legal doc="cerez" />} />
+            <Route path="/cayma-formu" element={<WithdrawalForm />} />
+            <Route path="/odeme-secenekleri" element={<PaymentOptions />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <InstagramStrip />

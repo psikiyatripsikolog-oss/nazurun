@@ -79,7 +79,7 @@ export default function CartDrawer() {
               <p className="flex items-center gap-2 text-[14px] text-rg-title mb-3"><Truck size={16} className="text-rg-link" /> 3'lü Set içeren siparişte kargo ücretsiz</p>
             )}
             <div className="flex justify-between items-baseline">
-              <span className="font-heading text-rg-title text-[18px]">Ara toplam</span>
+              <span className="font-heading text-rg-title text-[18px]">Ara toplam <span className="text-[13px] text-rg-meta font-body">(KDV dahil)</span></span>
               <span className="font-heading text-rg-title text-[24px]" data-testid="drawer-subtotal">{formatTL(subtotal)}</span>
             </div>
             <div className="mt-5 grid grid-cols-2 gap-3">

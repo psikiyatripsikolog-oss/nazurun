@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from "../ui/dialog";
 import { WordsUp } from "../common/Reveal";
 import RotatingBadge from "../common/RotatingBadge";
 import Counter from "../common/Counter";
-import { IMG, BRAND } from "../../data/mock";
+import { IMG } from "../../data/mock";
 
 const REEL_ID = "DdygxWYNI5Q";
 
 export default function Hero() {
-  const [open, setOpen] = useState(false);
   return (
     <section className="relative min-h-[100svh] bg-rg-dark overflow-hidden flex flex-col" data-testid="hero-section">
       <div className="absolute inset-0">
@@ -38,7 +36,7 @@ export default function Hero() {
 
         <div className="mt-14 grid grid-cols-12 gap-y-10 gap-x-8 items-end">
           <div className="col-span-12 lg:col-span-7 flex flex-wrap items-center gap-x-14 gap-y-10 fade-in" style={{ animationDelay: "900ms" }}>
-            <RotatingBadge onClick={() => setOpen(true)} size={200} />
+            <RotatingBadge onClick={() => window.open(`https://www.instagram.com/reel/${REEL_ID}/`, "_blank", "noopener,noreferrer")} size={200} />
             <div className="flex items-center gap-6">
               <span className="font-heading text-rg-lime leading-none" style={{ fontSize: "clamp(90px, 9vw, 150px)", letterSpacing: "-0.04em" }}>
                 <Counter to={3} duration={1200} />
@@ -63,24 +61,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-[420px] p-0 overflow-hidden bg-rg-dark border-0 rounded-[24px]" data-testid="hero-video-dialog">
-          <DialogTitle className="sr-only">CABELO₃ tanıtım videosu</DialogTitle>
-          <DialogDescription className="sr-only">Instagram reels tanıtım videosu</DialogDescription>
-          {open && (
-            <iframe
-              title="CABELO₃ Instagram tanıtım videosu"
-              src={`https://www.instagram.com/reel/${REEL_ID}/embed`}
-              className="w-full h-[640px] max-h-[80vh] bg-white"
-              allow="autoplay; encrypted-media"
-              loading="lazy"
-            />
-          )}
-          <a href={`https://www.instagram.com/reel/${REEL_ID}/`} target="_blank" rel="noopener noreferrer" className="block text-center py-3 text-[14px] text-rg-alttext hover:text-rg-link transition-colors">
-            Instagram’da aç · @{BRAND.instagram}
-          </a>
-        </DialogContent>
-      </Dialog>
     </section>
   );
 }

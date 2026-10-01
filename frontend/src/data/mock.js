@@ -1,5 +1,9 @@
-// CABELO₃ Dermokozmetik – site verileri (MOCK / statik içerik)
-// Aşama 2'de ürün, sipariş ve blog verileri backend'den gelecek şekilde tasarlandı.
+// CABELO₃ Dermokozmetik – site verileri ve sabitler
+// ======================================================================
+// YAYINDAN ÖNCE DOLDURULACAK: Köşeli parantezli tüm değerler bu dosyadadır.
+// Değeri yazdığınızda sitede geçtiği her yerde (künye, yasal sayfalar,
+// ürün sayfaları, ödeme adımı) otomatik olarak güncellenir.
+// ======================================================================
 
 export const BRAND = {
   name: "CABELO₃ Dermokozmetik",
@@ -8,9 +12,51 @@ export const BRAND = {
   seller: "NEFES SAÇ EKİMİ DANIŞMANLIK TİC. LTD. ŞTİ.",
   instagram: "cabelo3haircosmetic",
   instagramUrl: "https://www.instagram.com/cabelo3haircosmetic/",
-  phone: null, // yakında
-  email: null, // yakında
-  address: null, // yakında
+  website: "cabelo3.com",
+  mersis: "[MERSİS NO]",
+  taxInfo: "[VERGİ DAİRESİ / VKN]",
+  address: "[AÇIK ADRES]",
+  phone: "[TELEFON]",
+  email: "[E-POSTA]",
+  kep: "[KEP ADRESİ]",
+  chamber: "[TİCARET ODASI]",
+  chamberUrl: "[ODA İNTERNET ADRESİ]",
+  trademark: "[TESCİLLİ MARKA — varsa]",
+};
+
+export const SHIPPING = {
+  dispatchTime: "[KARGOYA VERİLİŞ SÜRESİ]",
+  deliveryTime: "[TESLİM SÜRESİ]",
+  singleProductFee: "[TEK ÜRÜN KARGO ÜCRETİ]",
+  // Tek ürün kargo ücreti belli olduğunda sayı olarak da yazın (ör. 90). Genel toplam bu sayıyla hesaplanır.
+  singleProductFeeAmount: null,
+  returnCarrier: "[İADE KARGO FİRMASI]",
+  region: "[GÖNDERİM BÖLGESİ]",
+};
+
+export const PAYMENT = {
+  methods: "[KABUL EDİLEN ÖDEME ARAÇLARI]",
+  preMessage: "[ÖDEME ÖNCESİ GEÇİCİ MESAJ]",
+};
+
+export const CONTRACT = {
+  storage: "[SÖZLEŞME SAKLAMA / ERİŞİM BİLGİSİ]",
+};
+
+export const PRODUCT_INFO = {
+  manufacturer: "[ÜRETİCİ / İTHALATÇI]",
+  origin: "[ÜRETİM YERİ]",
+  defaultStock: "Stokta",
+};
+
+// Sabit cümleler (S1–S6) – her yerde birebir aynı kullanılır
+export const S = {
+  S1: "Koruyucu bandı veya mührü açılmış ürünler, sağlık ve hijyen nedeniyle iade edilemez. Açılmamış ürünler iade edilebilir.",
+  S2: `Siparişler ${SHIPPING.dispatchTime} kargoya verilir, ${SHIPPING.deliveryTime} içinde teslim edilir.`,
+  S3: "Ürünü teslim aldığınız günden başlayarak 14 gün içinde, gerekçe göstermeden ve ceza ödemeden cayabilirsiniz. Cayma hakkını siparişi verdiğiniz andan ürünü teslim alana kadar da kullanabilirsiniz.",
+  S4: `Ürünü ${SHIPPING.returnCarrier} ile gönderirseniz iade kargo ücreti sizden alınmaz. Bu firmanın bulunduğunuz yerde şubesi yoksa ürün, ek ücret alınmadan sizden teslim alınır.`,
+  S5: `Ürün iade için ${SHIPPING.returnCarrier} kargosuna teslim edildikten sonra 14 gün içinde, teslimat ücreti dahil ödediğiniz tutarın tamamı, ödemede kullandığınız ödeme aracına tek seferde ve masrafsız iade edilir. Ürünü başka bir kargoyla gönderirseniz süre ürün bize ulaştığında başlar. Teslimden önce caydıysanız süre bildiriminiz bize ulaştığında başlar.`,
+  S6: `Hasarlı, eksik ya da hatalı ürün ulaşırsa ${BRAND.email} / ${BRAND.phone} üzerinden bize bildirin; yasal haklarınız saklıdır.`,
 };
 
 export const IMG = {
@@ -61,6 +107,7 @@ export const PRODUCTS = [
     shortName: "Şampuan",
     volume: "250 ml",
     price: 1400,
+    unitPrice: "100 ml fiyatı: 560 TL",
     category: "Şampuan",
     step: "Arındır",
     tagline: "Saç derisini kurutmadan arındırır",
@@ -95,6 +142,7 @@ export const PRODUCTS = [
     shortName: "Tonik",
     volume: "100 ml",
     price: 1250,
+    unitPrice: "100 ml fiyatı: 1.250 TL",
     category: "Tonik",
     step: "Dengele",
     tagline: "Durulanmayan, hafif dokulu bakım",
@@ -125,6 +173,7 @@ export const PRODUCTS = [
     shortName: "Ozon Serumu",
     volume: "30 ml",
     price: 1500,
+    unitPrice: "100 ml fiyatı: 5.000 TL",
     category: "Serum",
     step: "Haftalık ön bakım",
     tagline: "%100 doğal, tek bileşenli haftalık bakım",
@@ -155,7 +204,7 @@ export const PRODUCTS = [
     shortName: "3'lü Set",
     volume: "Şampuan 250 ml + Tonik 100 ml + Ozon Serumu 30 ml",
     price: 3600,
-    oldPrice: 4150,
+    separateTotal: 4150,
     freeShipping: true,
     category: "Set",
     step: "Tam rutin",
@@ -165,7 +214,7 @@ export const PRODUCTS = [
     gallery: [IMG.set, IMG.series, IMG.woodSet, IMG.foamTiles],
     alt: "CABELO₃ 3'lü Set: Sebum Dengeleyici Bakım Şampuanı, Saç Toniği ve Ozon Serumu kutuları",
     short:
-      "Sebum Dengeleyici Bakım Şampuanı, Sebum Dengeleyici Saç Toniği ve Ozon Serumu bir arada. Ayrı ayrı 4.150 TL yerine 3.600 TL, kargo ücretsiz.",
+      "Sebum Dengeleyici Bakım Şampuanı, Sebum Dengeleyici Saç Toniği ve Ozon Serumu bir arada. Ayrı ayrı alındığında toplam 4.150 TL. 3'lü Set siparişlerinde kargo ücretsizdir.",
     description: [
       "3'lü Set, CABELO₃ rutininin üç adımını bir araya getirir: haftalık ön bakım için Ozon Serumu, arındırmak için Sebum Dengeleyici Bakım Şampuanı ve dengelemek için Sebum Dengeleyici Saç Toniği.",
       "Ürünler birlikte bir rutin oluşturacak şekilde tasarlanmıştır; her biri tek başına da kullanılabilir. Set siparişlerinde kargo ücretsizdir.",
@@ -300,16 +349,24 @@ export const FAQS = [
     a: "Tek bileşeni ozonlanmış zeytinyağıdır. Ozon Serumu %100 doğal olarak üretilmiştir.",
   },
   {
-    q: "Siparişim ne zaman kargoya verilir?",
-    a: "Siparişler aynı gün kargoya verilir. 3'lü Set siparişlerinde kargo ücretsizdir.",
+    q: "Sipariş nasıl verilir?",
+    a: "1) Ürün sayfasında adedi seçip \"Sepete Ekle\" düğmesine basın. 2) Sepetinizi kontrol edin; adedi değiştirebilir ya da ürünü silebilirsiniz. 3) Ödeme adımında teslimat bilgilerinizi girin. 4) Sipariş özetini, Ön Bilgilendirme Formu'nu ve Mesafeli Satış Sözleşmesi'ni okuyup onay kutusunu işaretleyin. 5) \"Siparişi Onayla ve Öde\" düğmesiyle ödeme adımına geçin.",
   },
   {
-    q: "İade koşulları nelerdir?",
-    a: "Teslimden itibaren 14 gün cayma hakkınız vardır. Hijyen gereği yalnızca açılmamış, mühürlü, kullanılmamış ve yeniden satılabilir ürünler iade alınır.",
+    q: "Kargo ne zaman gelir?",
+    a: `${S.S2} 3'lü Set siparişlerinde kargo ücretsizdir; tek ürün siparişlerinde kargo ücreti ${SHIPPING.singleProductFee}.`,
+  },
+  {
+    q: "İade nasıl yapılır?",
+    a: `${S.S3} ${S.S1} ${S.S4} ${S.S5}`,
   },
   {
     q: "Ürün hasarlı ya da eksik geldiyse ne yapmalıyım?",
-    a: "Kırık, akmış, eksik ya da yanlış ürünü teslimattan sonraki 3 gün içinde sipariş numaranızla bize bildirin. İnceleme sonrası değişim ya da ücret iadesi yapılır.",
+    a: S.S6,
+  },
+  {
+    q: "Hangi ödeme yöntemleri var?",
+    a: `Kabul edilen ödeme araçları: ${PAYMENT.methods}. Ödemeler PayTR güvenli ödeme altyapısı üzerinden alınır; kart bilgileriniz sitemizde tutulmaz.`,
   },
 ];
 
@@ -344,7 +401,7 @@ export const NAV = [
       { label: "Bileşenler", to: "/bilesenler" },
       { label: "Kullanım Rehberi", to: "/kullanim-rehberi" },
       { label: "Sıkça Sorulan Sorular", to: "/sss" },
-      { label: "Kargo ve İade", to: "/kargo-ve-iade" },
+      { label: "Teslimat ve İade Şartları", to: "/kargo-ve-iade" },
     ],
   },
   { label: "Blog", to: "/blog" },

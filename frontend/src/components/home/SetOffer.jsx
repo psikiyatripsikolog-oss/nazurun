@@ -36,14 +36,14 @@ export default function SetOffer() {
       </div>
       <div className="rg-container relative w-full py-[70px] max-md:pt-[320px] max-md:pb-[20px] flex justify-end">
         <Reveal variant="from-right" className="w-full max-w-[430px] max-md:max-w-none bg-rg-bg rounded-[30px] p-10 max-md:p-8">
-          <p className="rg-subtitle">3'lü Set fırsatı</p>
+          <p className="rg-subtitle">3'lü Set</p>
           <h2 className="rg-h4 mt-5" style={{ fontSize: "clamp(30px, 2.8vw, 44px)" }}>Şampuan + Tonik + Ozon Serumu</h2>
           <p className="mt-5 text-[16px]">Rutinin üç adımı tek kutuda. Her ürün tek başına da kullanılabilir.</p>
           <div className="mt-7 flex items-baseline gap-4">
             <span className="font-heading text-[40px] text-rg-title leading-none" data-testid="set-offer-price">{formatTL(set.price)}</span>
-            <span className="text-[18px] line-through text-rg-meta">{formatTL(set.oldPrice)}</span>
+            <span className="text-[15px] text-rg-meta">KDV dahil</span>
           </div>
-          <p className="mt-2 text-[14px]">Ayrı ayrı {formatTL(set.oldPrice)}</p>
+          <p className="mt-2 text-[15px]">Ayrı ayrı alındığında toplam {formatTL(set.separateTotal)}</p>
           <p className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rg-bg2 text-[14px] text-rg-title">
             <Truck size={16} className="text-rg-link" /> Kargo ücretsiz
           </p>

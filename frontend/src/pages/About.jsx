@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Package, Droplets, Truck, RotateCcw } from "lucide-react";
+import { Package, Droplets, RotateCcw } from "lucide-react";
 import Seo from "../components/common/Seo";
 import PageTitle from "../components/common/PageTitle";
 import Reveal from "../components/common/Reveal";
@@ -13,7 +13,6 @@ import { IMG, BRAND } from "../data/mock";
 const STATS = [
   { icon: Package, value: 3, suffix: "", label: "ürünlük bakım serisi" },
   { icon: Droplets, value: 250, suffix: " ml", label: "şampuan · 100 ml tonik · 30 ml Ozon Serumu" },
-  { icon: Truck, text: "Aynı gün", label: "kargo" },
   { icon: RotateCcw, value: 14, suffix: " gün", label: "cayma hakkı (teslimden itibaren)" },
 ];
 
@@ -47,7 +46,8 @@ export default function About() {
               <div className="mt-9 p-6 rounded-[24px] bg-rg-bg2">
                 <p className="font-heading text-rg-title text-[19px]">{BRAND.owner}</p>
                 <p className="text-[15px] mt-1">Marka sahibi</p>
-                <p className="text-[14px] mt-4 text-rg-meta">Satıcı: {BRAND.seller}</p>
+                <p className="text-[15px] mt-4">Satıcı: <span className="text-rg-title">{BRAND.seller}</span>. Ürünlerimiz {BRAND.website} üzerinden online olarak satılır.</p>
+                <Link to="/iletisim" className="rg-link mt-3 text-[15px]" data-testid="about-contact-link">Satıcı künyesi ve iletişim bilgileri</Link>
               </div>
             </Reveal>
           </div>
@@ -55,7 +55,7 @@ export default function About() {
       </section>
 
       <section className="bg-rg-dark py-[100px] max-md:py-[70px]" data-testid="about-stats">
-        <div className="rg-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="rg-container grid grid-cols-1 sm:grid-cols-3 gap-10">
           {STATS.map((s, i) => (
             <Reveal key={i} delay={i * 100} className="lg:border-l lg:border-rg-altbd lg:pl-10 first:border-l-0 first:pl-0">
               <s.icon className="text-rg-link" size={30} strokeWidth={1.4} />

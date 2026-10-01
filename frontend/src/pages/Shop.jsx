@@ -64,7 +64,7 @@ export default function Shop() {
           </div>
         </div>
       </section>
-      <CoralBand text="Aynı gün kargo · 3'lü Sette kargo ücretsiz · 14 gün cayma hakkı" />
+      <CoralBand text="Fiyatlar KDV dahildir · 3'lü Sette kargo ücretsiz · 14 gün cayma hakkı" />
     </main>
   );
 }

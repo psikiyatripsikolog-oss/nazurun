@@ -1,0 +1,26 @@
+# CABELO₃ – Apache / cPanel yayın ayarları
+# Bu dosya build klasörüyle birlikte public_html köküne yüklenir.
+
+Options -MultiViews
+RewriteEngine On
+
+# http -> https yönlendirmesi (SSL kurulduktan sonra aşağıdaki iki satırın başındaki # işaretini kaldırın)
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Tek sayfa uygulama (SPA) yönlendirmesi: var olmayan tüm adresler index.html'e gider
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+# Statik dosyalar için tarayıcı önbelleği
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
